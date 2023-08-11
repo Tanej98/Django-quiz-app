@@ -1,0 +1,243 @@
+[
+  {
+    "model": "app.question",
+    "pk": 1,
+    "fields": {
+      "question": "What is the capital of France?",
+      "option1": "Berlin",
+      "option2": "Madrid",
+      "option3": "Paris",
+      "option4": "Rome",
+      "answer": "Paris"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 2,
+    "fields": {
+      "question": "Which planet is known as the Red Planet?",
+      "option1": "Mars",
+      "option2": "Jupiter",
+      "option3": "Venus",
+      "option4": "Saturn",
+      "answer": "Mars"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 3,
+    "fields": {
+      "question": "What is the largest mammal?",
+      "option1": "Elephant",
+      "option2": "Blue Whale",
+      "option3": "Giraffe",
+      "option4": "Hippopotamus",
+      "answer": "Blue Whale"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 4,
+    "fields": {
+      "question": "Which famous scientist developed the theory of relativity?",
+      "option1": "Isaac Newton",
+      "option2": "Albert Einstein",
+      "option3": "Galileo Galilei",
+      "option4": "Marie Curie",
+      "answer": "Albert Einstein"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 5,
+    "fields": {
+      "question": "What is the chemical symbol for gold?",
+      "option1": "Go",
+      "option2": "Au",
+      "option3": "Gd",
+      "option4": "Ag",
+      "answer": "Au"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 6,
+    "fields": {
+      "question": "Which novel is written by George Orwell and features the concept of Big Brother?",
+      "option1": "1984",
+      "option2": "Brave New World",
+      "option3": "Fahrenheit 451",
+      "option4": "Animal Farm",
+      "answer": "1984"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 7,
+    "fields": {
+      "question": "What is the tallest mountain in the world?",
+      "option1": "Mount Kilimanjaro",
+      "option2": "Mount Everest",
+      "option3": "Mount McKinley",
+      "option4": "Mount Fuji",
+      "answer": "Mount Everest"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 8,
+    "fields": {
+      "question": "Which gas do plants use for photosynthesis?",
+      "option1": "Oxygen",
+      "option2": "Carbon Dioxide",
+      "option3": "Nitrogen",
+      "option4": "Hydrogen",
+      "answer": "Carbon Dioxide"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 9,
+    "fields": {
+      "question": "What is the smallest prime number?",
+      "option1": "0",
+      "option2": "1",
+      "option3": "2",
+      "option4": "3",
+      "answer": "2"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 10,
+    "fields": {
+      "question": "Which famous playwright wrote Romeo and Juliet?",
+      "option1": "William Shakespeare",
+      "option2": "George Bernard Shaw",
+      "option3": "Oscar Wilde",
+      "option4": "Jane Austen",
+      "answer": "William Shakespeare"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 11,
+    "fields": {
+      "question": "Which gas is responsible for the ozone layer depletion?",
+      "option1": "Oxygen",
+      "option2": "Carbon Dioxide",
+      "option3": "Methane",
+      "option4": "Chlorofluorocarbons (CFCs)",
+      "answer": "Chlorofluorocarbons (CFCs)"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 12,
+    "fields": {
+      "question": "What is the largest organ in the human body?",
+      "option1": "Liver",
+      "option2": "Heart",
+      "option3": "Skin",
+      "option4": "Lungs",
+      "answer": "Skin"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 13,
+    "fields": {
+      "question": "Which famous painting is known for its mysterious smile?",
+      "option1": "Starry Night",
+      "option2": "The Persistence of Memory",
+      "option3": "Mona Lisa",
+      "option4": "The Scream",
+      "answer": "Mona Lisa"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 14,
+    "fields": {
+      "question": "What is the currency of Japan?",
+      "option1": "Yuan",
+      "option2": "Yen",
+      "option3": "Won",
+      "option4": "Rupee",
+      "answer": "Yen"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 15,
+    "fields": {
+      "question": "Which element is represented by the chemical symbol 'Fe'?",
+      "option1": "Fluorine",
+      "option2": "Iron",
+      "option3": "Ferrum",
+      "option4": "Francium",
+      "answer": "Iron"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 16,
+    "fields": {
+      "question": "What is the main component of Earth's atmosphere?",
+      "option1": "Nitrogen",
+      "option2": "Oxygen",
+      "option3": "Carbon Dioxide",
+      "option4": "Argon",
+      "answer": "Nitrogen"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 17,
+    "fields": {
+      "question": "In which year did World War I begin?",
+      "option1": "1914",
+      "option2": "1918",
+      "option3": "1939",
+      "option4": "1945",
+      "answer": "1914"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 18,
+    "fields": {
+      "question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
+      "option1": "Venus",
+      "option2": "Mars",
+      "option3": "Mercury",
+      "option4": "Jupiter",
+      "answer": "Venus"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 19,
+    "fields": {
+      "question": "What is the chemical symbol for water?",
+      "option1": "Wa",
+      "option2": "H2O",
+      "option3": "Hy",
+      "option4": "Aq",
+      "answer": "H2O"
+    }
+  },
+  {
+    "model": "app.question",
+    "pk": 20,
+    "fields": {
+      "question": "Who wrote the play 'Hamlet'?",
+      "option1": "John Milton",
+      "option2": "William Wordsworth",
+      "option3": "William Shakespeare",
+      "option4": "John Keats",
+      "answer": "William Shakespeare"
+    }
+  }
+]
+
