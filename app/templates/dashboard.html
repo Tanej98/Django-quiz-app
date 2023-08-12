@@ -1,2 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Dashboard</h1>
+<div>
+    <h4>Max Score : {{max_score}}</h4>
+    <h4>Min Score : {{min_score}}</h4>
+    <h4>Avg Score : {{avg_score}}</h4>
+
+    <table>
+        <caption>Last 5 quiz results</caption>
+        <tr>
+            <th>Date</th>
+            <th>Score</th>
+        </tr>
+        {% for quiz in last_five_quiz %}
+        <tr>
+            <td>{{quiz.date}}</td>
+            <td>{{quiz.score}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 <button><a href="{% url 'quiz' %}">Take quiz</a></button>
+{% endblock %}
