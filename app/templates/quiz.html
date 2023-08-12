@@ -1,1 +1,23 @@
 <h3>Quiz</h3>
+
+
+<form action="dashboard" method="POST">
+    {% csrf_token %}
+{% for question in questions %}
+    <div>
+        <h2>{{ question }}</h2>
+            <input type="radio" name="{{question}}" value="{{question.option1}}">
+            <label for="{{question}}">{{question.option1}}</label>
+
+            <input type="radio" name="{{question}}" value="{{question.option1}}">
+            <label for="{{question}}">{{question.option2}}</label>
+
+            <input type="radio" name="{{question}}" value="{{question.option1}}">
+            <label for="{{question}}">{{question.option3}}</label>
+
+            <input type="radio" name="{{question}}" value="{{question.option1}}">
+            <label for="{{question}}">{{question.option4}}</label>
+    </div>
+{% endfor %}
+    <input type="submit" value="submit">
+</form>
