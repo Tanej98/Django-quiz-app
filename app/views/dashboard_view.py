@@ -3,7 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Avg, Max, Min
 from app.models.quiz import Quiz
 import math
+import datetime
+from django.http import JsonResponse
 
+
+def server_time(request):
+    now = datetime.datetime.now()
+    response_data = {'server_time': now.strftime('%Y-%m-%d %H:%M:%S')}
+    return JsonResponse(response_data)
 
 @login_required
 def user_dashboard(request):

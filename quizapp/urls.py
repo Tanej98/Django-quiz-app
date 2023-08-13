@@ -27,5 +27,7 @@ urlpatterns = [
     path('quiz/', take_quiz, name="quiz"),
     path('quiz/dashboard', redirect_to_dashboard),
     path('dashboard/', user_dashboard, name="dashboard"),
-    path('register/', user_registration, name="register")
+    path('register/', user_registration, name="register"),
+    path('server_time/', server_time, name="server_time"),
+
 ]

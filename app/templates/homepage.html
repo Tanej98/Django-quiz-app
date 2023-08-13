@@ -1,5 +1,15 @@
-<div>
-    <h3>Home Page</h3>
-    <button><a href="{% url 'login' %}">Login</a></button>
-    <button><a href="{% url 'register' %}">register</a></button>
+{% extends "unauthenticated_base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="px-5 h-100 d-flex align-items-center justify-content-center">
+    <div class="">
+        <h3 class="text-center">Quiz App</h3>
+        <h5 class="text-center">Test your knowledge on a general topic</h5>
+        <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+            <a class="btn btn-primary" href="{% url 'register' %}">register</a>
+        </div>
+    </div>
 </div>
+{% endblock %}

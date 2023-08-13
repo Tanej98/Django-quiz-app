@@ -2,9 +2,12 @@
 {% load bootstrap5 %}
 
 {% block content %}
-<h1>Dashboard</h1>
-<div class="container">
+<div class="container mt-5">
     {% if quiz_take == False %}
+    <div class="text-center">
+        <h3>Look's like you have never taken quiz yet !</h3>
+        <a href="{% url 'quiz' %}" class="btn btn-primary mt-3">New Quiz</a>
+    </div>
     {% endif %}
     {% if quiz_take == True %}
     <div class="row">
@@ -54,5 +57,4 @@
     </div>
     {% endif %}
 </div>
-<a class="btn btn-primary center" href="{% url 'quiz' %}">Take quiz</a>
 {% endblock %}
