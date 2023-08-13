@@ -8,6 +8,7 @@ class Quiz(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date = models.DateTimeField(default=datetime.datetime.now)
     score = models.IntegerField(null=False)
+    questions = models.TextField(default='')
 
     def __str__(self):
         return self.user.__str__() + str(self.date) + str(self.score)

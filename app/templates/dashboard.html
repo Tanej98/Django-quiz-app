@@ -1,25 +1,58 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
 
 {% block content %}
 <h1>Dashboard</h1>
-<div>
-    <h4>Max Score : {{max_score}}</h4>
-    <h4>Min Score : {{min_score}}</h4>
-    <h4>Avg Score : {{avg_score}}</h4>
+<div class="container">
+    {% if quiz_take == False %}
+    {% endif %}
+    {% if quiz_take == True %}
+    <div class="row">
+        <div class="col">
+            <h4>Max Score : {{max_score}}</h4>
+            <h4>Min Score : {{min_score}}</h4>
+            <h4>Avg Score : {{avg_score}}</h4>
 
-    <table>
-        <caption>Last 5 quiz results</caption>
-        <tr>
-            <th>Date</th>
-            <th>Score</th>
-        </tr>
-        {% for quiz in last_five_quiz %}
-        <tr>
-            <td>{{quiz.date}}</td>
-            <td>{{quiz.score}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+            <table class="table table-striped">
+                <caption>Last 5 quiz results</caption>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                {% for quiz in last_five_quiz %}
+                <tr>
+                    <td>{{quiz.date}}</td>
+                    <td>{{quiz.score}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                        Last Exam Result
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Score - {{last_quiz.score}}/5</h5>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: {{last_quiz_score}}%;" aria-valuenow='{{ last_quiz_score }}' aria-valuemin="0" aria-valuemax="100">{{ last_quiz_score}}%</div>
+                    </div>
+                    <div class="text-center mt-3">
+                        {% if retake == True %}
+                        <a href="{% url 'quiz' %}?quiz={{last_quiz.id}}" class="btn btn-primary">Retry Quiz</a>
+                        {% endif %}
+                        <a href="{% url 'quiz' %}" class="btn btn-primary">New Quiz</a>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    {{result_text}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
-<button><a href="{% url 'quiz' %}">Take quiz</a></button>
+<a class="btn btn-primary center" href="{% url 'quiz' %}">Take quiz</a>
 {% endblock %}
