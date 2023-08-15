@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="mx-5 my-5">
-    <h3>Quiz</h3>
+    <h4>Quiz - {{ topic }}</h4>
 <form action="dashboard" method="POST">
     {% csrf_token %}
 {% for question in questions %}

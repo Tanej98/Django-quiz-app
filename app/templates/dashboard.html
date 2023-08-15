@@ -2,11 +2,38 @@
 {% load bootstrap5 %}
 
 {% block content %}
+<script>
+    function updateQuizMetrics(topic) {
+      $.getJSON('/quiz_metrics/?topic=' + topic, function(data) {
+        if(data.max_score != -1){
+        $("#exam_metric_not_exist").hide();
+        $("#exam_metric_exist").show();
+        $('#max_score').text(data.max_score);
+        $('#min_score').text(data.min_score);
+        $('#avg_score').text(data.avg_score);
+        }else{
+        $("#exam_metric_exist").hide();
+        $("#exam_metric_not_exist").show();
+        }
+      });
+    }
+
+    $(document).ready(function() {
+      updateQuizMetrics($("#topic_select").val());
+
+      $("#topic_select").on('change', function() {
+          updateQuizMetrics(this.value);
+      });
+    });
+
+  </script>
 <div class="container mt-5">
     {% if quiz_take == False %}
     <div class="text-center">
         <h3>Look's like you have never taken quiz yet !</h3>
-        <a href="{% url 'quiz' %}" class="btn btn-primary mt-3">New Quiz</a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#startquizmodal">
+            New Quiz
+        </button>
     </div>
     {% endif %}
     {% if quiz_take == True %}
@@ -14,25 +41,29 @@
         <div class="col">
             <div class="card mb-4">
                 <div class="card-header">
-                        Overall Result
+                    Result
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <label class="form-label" for="topic_select">Topic</label>
                         <select id="topic_select" class="form-select" aria-label="Default select example">
-                        <option value="Geography" selected>Geography</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                            <option value="Overall" selected>Overall</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Solar System">Solar System</option>
+                            <option value="Geography">Geography</option>
                         </select>
                     </div>
 
-                    <div>
-                        <p>Max Score : <strong>{{max_score}}</strong></p>
-                        <p>Min Score : <strong>{{min_score}}</strong></p>
-                        <p>Avg Score : <strong>{{avg_score}}</strong></p>
+                    <div id="exam_metric_exist">
+                        <p>Max Score : <strong id="max_score">{{max_score}}</strong></p>
+                        <p>Min Score : <strong id="min_score">{{min_score}}</strong></p>
+                        <p>Avg Score : <strong id="avg_score">{{avg_score}}</strong></p>
                     </div>
                 </div>
+                <div class="card-footer" id="exam_metric_not_exist">
+                        You didn't take any quiz
+                .</div>
+
             </div>
 
             <div class="card">
@@ -44,12 +75,14 @@
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Topic</th>
                             <th>Score</th>
                         </tr>
                     </thead>
                     {% for quiz in last_five_quiz %}
                     <tr>
                         <td>{{quiz.date}}</td>
+                        <td>{{quiz.topic}}</td>
                         <td>{{quiz.score}}</td>
                     </tr>
                     {% endfor %}
@@ -71,7 +104,9 @@
                         {% if retake == True %}
                         <a href="{% url 'quiz' %}?quiz={{last_quiz.id}}" class="btn btn-primary">Retry Quiz</a>
                         {% endif %}
-                        <a href="{% url 'quiz' %}" class="btn btn-primary">New Quiz</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#startquizmodal">
+                            New Quiz
+                        </button>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
@@ -81,5 +116,32 @@
         </div>
     </div>
     {% endif %}
+    <div class="modal fade" id="startquizmodal" tabindex="-1" aria-labelledby="startModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="startModalLabel">Start quiz</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                                <form class="form" action="{% url 'quiz' %}" method="POST">
+                                        {% csrf_token %}
+                                    <div class="modal-body">
+                              <div class="mb-3">
+                        <label class="form-label" for="topic_select_modal">Select Topic</label>
+                        <select id="topic_select_modal" name="topic" class="form-select" aria-label="Default select example">
+                            <option value="Sports" selected>Sports</option>
+                            <option value="Solar System">Solar System</option>
+                            <option value="Geography">Geography</option>
+                        </select>
+                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <input style="width: 108px;" class="btn btn-primary" type="submit" value="Start Quiz">
+                            </div>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
 </div>
 {% endblock %}

@@ -9,6 +9,7 @@ class Question(models.Model):
     option2 = models.CharField(max_length=255, null=True)
     option3 = models.CharField(max_length=255, null=True)
     option4 = models.CharField(max_length=255, null=True)
+    topic = models.CharField(max_length=255, null=False)
 
     def __str__(self):
         return self.question

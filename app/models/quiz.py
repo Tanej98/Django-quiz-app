@@ -9,6 +9,7 @@ class Quiz(models.Model):
     date = models.DateTimeField(default=datetime.datetime.now)
     score = models.IntegerField(null=False)
     questions = models.TextField(default='')
+    topic = models.CharField(max_length=255, null=False)
 
     def __str__(self):
         return self.user.__str__() + str(self.date) + str(self.score)

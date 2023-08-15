@@ -25,6 +25,7 @@ urlpatterns = [
     path('login/', user_login, name="login"),
     path('logout/', logout_view, name="logout"),
     path('quiz/', take_quiz, name="quiz"),
+    path('quiz_metrics/', get_quiz_metrics, name="quiz_metrics"),
     path('quiz/dashboard', redirect_to_dashboard),
     path('dashboard/', user_dashboard, name="dashboard"),
     path('register/', user_registration, name="register"),

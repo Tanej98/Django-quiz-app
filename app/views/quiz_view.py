@@ -20,12 +20,14 @@ def redirect_to_dashboard(request):
 
         questions_dict = {}
         question_count = 1
+        topic = ''
         for question in questions_list:
             for i in request.POST:
                 if i != "csrfmiddlewaretoken" or i != 'quiz_id':
                     if question.question.strip() == i.strip():
                         questions_dict['question_'+str(question_count)] = question.id
                         questions_dict['answer_'+str(question_count)] = request.POST[i].strip()
+                        topic = question.topic
                         question_count += 1
                         if question.answer.strip() == request.POST[i].strip():
                             correct_answers = correct_answers + 1
@@ -37,16 +39,25 @@ def redirect_to_dashboard(request):
         q.user = request.user
         q.score = correct_answers
         q.questions = json.dumps(questions_dict)
+        q.topic = topic
         q.save()
     return redirect('dashboard')
 
 
 @login_required
 def take_quiz(request):
-    quiz_id = request.GET.get('quiz', -1)
+    topic = 'Sports'  # default value
+    if request.method == "GET":
+        quiz_id = request.GET.get('quiz', -1)
+    if request.method == "POST" and 'topic' in request.POST:
+        topic = request.POST['topic']
+        quiz_id = -1
     if quiz_id == -1:
-        questions = list(Question.objects.all())
+        questions = list(Question.objects.filter(topic=topic))
+        print(topic)
+        print(questions)
         questions = random.sample(questions, 5)
+        topic = questions[0].topic
     else:
         quiz_ = Quiz.objects.get(pk=quiz_id)
         question_dict = json.loads(quiz_.questions)
@@ -54,4 +65,5 @@ def take_quiz(request):
         for i in range(1,6):
             question_ids.append(question_dict['question_'+str(i)])
         questions = Question.objects.filter(pk__in=question_ids)
-    return render(request=request, template_name="quiz.html", context={"questions": questions, 'quiz_id': quiz_id})
+    return render(request=request, template_name="quiz.html", context={"questions": questions, 'quiz_id': quiz_id,
+                                                                       'topic': topic})
