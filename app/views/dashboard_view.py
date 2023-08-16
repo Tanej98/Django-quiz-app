@@ -3,20 +3,20 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Avg, Max, Min
 from app.models.quiz import Quiz
 import math
-import datetime
 from django.http import JsonResponse
+from django.core import serializers
 
 
-def server_time(request):
-    now = datetime.datetime.now()
-    response_data = {'server_time': now.strftime('%Y-%m-%d %H:%M:%S')}
+
+def user_name(request):
+    response_data = {'username': str(request.user).capitalize()}
     return JsonResponse(response_data)
 
 @login_required
 def get_quiz_metrics(request):
     topic = request.GET.get('topic', 'Overall')
     if topic == 'Overall':
-        topic =['Sports', 'Geography', 'Solar System']
+        topic = ['Sports', 'Geography', 'Solar System']
     else:
         topic = [topic]
     avg_score = Quiz.objects.filter(user=request.user, topic__in=topic).aggregate(Avg('score'))
@@ -32,6 +32,11 @@ def get_quiz_metrics(request):
 
     response_data = {'avg_score': avg_score['score__avg'], 'max_score': max_score['score__max'],
                      'min_score': min_score['score__min']}
+    if request.GET.get("all_quizzes", "False") != "False" and topic != "Overall":
+        all_quizzes = Quiz.objects.filter(user=request.user, topic=topic).order_by('-date')
+        response_data['quizzes'] = serializers.serialize('json', all_quizzes)
+
+    print(response_data)
     return JsonResponse(response_data)
 
 @login_required
@@ -55,5 +60,5 @@ def user_dashboard(request):
                                                                             'last_quiz': last_quiz,
                                                                             'quiz_take': True,
                                                                             'result_text': result_text,
-                                                                            'retake': (last_quiz.score <= 3)}
+                                                                            'retake': (last_quiz.score < 3)}
                   )

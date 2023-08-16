@@ -6,14 +6,14 @@
     function updateQuizMetrics(topic) {
       $.getJSON('/quiz_metrics/?topic=' + topic, function(data) {
         if(data.max_score != -1){
-        $("#exam_metric_not_exist").hide();
-        $("#exam_metric_exist").show();
+        $("#quiz_metric_not_exist").hide();
+        $("#quiz_metric_exist").show();
         $('#max_score').text(data.max_score);
         $('#min_score').text(data.min_score);
         $('#avg_score').text(data.avg_score);
         }else{
-        $("#exam_metric_exist").hide();
-        $("#exam_metric_not_exist").show();
+        $("#quiz_metric_exist").hide();
+        $("#quiz_metric_not_exist").show();
         }
       });
     }
@@ -24,6 +24,7 @@
       $("#topic_select").on('change', function() {
           updateQuizMetrics(this.value);
       });
+
     });
 
   </script>
@@ -54,13 +55,13 @@
                         </select>
                     </div>
 
-                    <div id="exam_metric_exist">
+                    <div id="quiz_metric_exist">
                         <p>Max Score : <strong id="max_score">{{max_score}}</strong></p>
                         <p>Min Score : <strong id="min_score">{{min_score}}</strong></p>
                         <p>Avg Score : <strong id="avg_score">{{avg_score}}</strong></p>
                     </div>
                 </div>
-                <div class="card-footer" id="exam_metric_not_exist">
+                <div class="card-footer" id="quiz_metric_not_exist">
                         You didn't take any quiz
                 .</div>
 
@@ -87,13 +88,16 @@
                     </tr>
                     {% endfor %}
                     </table>
+                    <div class="text-end">
+                        <a href="{% url 'all_quizzes' %}"  type="button" class="btn btn-primary btn-sm float-right">See All</a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                        Last Exam Result
+                        Last Quiz Result
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Score - {{last_quiz.score}}/5</h5>
@@ -117,10 +121,10 @@
     </div>
     {% endif %}
     <div class="modal fade" id="startquizmodal" tabindex="-1" aria-labelledby="startModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="startModalLabel">Start quiz</h1>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="startModalLabel">Start quiz</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                                 <form class="form" action="{% url 'quiz' %}" method="POST">

@@ -3,9 +3,20 @@
 
 {% block content %}
 <div class="px-5 h-100 d-flex align-items-center justify-content-center">
-    <div class="">
-        <h3 class="text-center">Quiz App</h3>
-        <h5 class="text-center">Test your knowledge on a general topic</h5>
+    <div>
+        {% if user_cs %}
+        <script>
+            setTimeout(function(){
+                window.history.replaceState({}, document.title, "/");
+                $('#success_alert').remove();
+            }, 2000);
+        </script>
+        <div id="success_alert" class="alert alert-success d-flex align-items-center justify-content-center" role="alert">
+            User created successfully
+        </div>
+        {% endif %}
+        <h3 class="text-center mb-3">Quiz App</h3>
+        <h5 class="text-center mb-3">Test your knowledge on topics like Sports, Geography and Solar System.</h5>
         <div class="text-center">
             <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
             <a class="btn btn-primary" href="{% url 'register' %}">register</a>
