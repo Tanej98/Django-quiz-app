@@ -82,7 +82,7 @@ def redirect_to_dashboard(request):
         topic = ''
         for question in questions_list:
             for i in request.POST:
-                if i != "csrfmiddlewaretoken" or i != 'quiz_id':
+                if i not in ["csrfmiddlewaretoken",'quiz_id', 'topic']:
                     if question.question.strip() == i.strip():
                         questions_dict['question_'+str(question_count)] = question.id
                         questions_dict['answer_'+str(question_count)] = request.POST[i].strip()
@@ -91,6 +91,8 @@ def redirect_to_dashboard(request):
                         if question.answer.strip() == request.POST[i].strip():
                             correct_answers = correct_answers + 1
         # retry quiz path
+        if "topic" in request.POST:
+            topic = request.POST["topic"]
         if 'quiz_id' in request.POST:
             q = Quiz.objects.filter(pk=request.POST['quiz_id'])[0]
         else:
@@ -120,12 +122,13 @@ def take_quiz(request):
     if quiz_id == -1:
         # rendering new quiz
         questions = list(Question.objects.filter(topic=topic))
-        # selecting 5 rando m questions
+        # selecting 5 random questions
         questions = random.sample(questions, 5)
         topic = questions[0].topic
     else:
         # rendering old quiz
         quiz_ = Quiz.objects.get(pk=quiz_id)
+        topic = quiz_.topic
         question_dict = json.loads(quiz_.questions)
         question_ids = []
         for i in range(1, 6):
