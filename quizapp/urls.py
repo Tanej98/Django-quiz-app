@@ -30,5 +30,6 @@ urlpatterns = [
     path('dashboard/', user_dashboard, name="dashboard"),
     path('register/', user_registration, name="register"),
     path('user_name/', user_name, name="user_name"),
-    path('all_quizzes/', get_all_quizzes, name="all_quizzes")
+    path('all_quizzes/', get_all_quizzes, name="all_quizzes"),
+    path("get_quiz/", get_quiz, name="get_quiz")
 ]

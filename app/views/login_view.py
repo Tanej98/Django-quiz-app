@@ -8,17 +8,19 @@ from django.shortcuts import redirect
 
 
 def logout_view(request):
+    """logout_view logouts the user"""
     logout(request)
     return redirect('homepage')
 
 
 def homepage(request):
+    # user_cs is for displaying success message on homepage
     user_cs = request.GET.get("user_cs", False)
     return render(request=request, template_name="homepage.html", context={"user_cs": user_cs})
 
+
 def user_login(request):
     form = AuthenticationForm()
-    auth_error = False
     if request.method == "POST":
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -29,6 +31,4 @@ def user_login(request):
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
                 return redirect("dashboard")
-            else:
-                auth_error = False
-    return render(request=request, template_name="login.html", context={"login_form": form, "auth_error": auth_error})
+    return render(request=request, template_name="login.html", context={"login_form": form})

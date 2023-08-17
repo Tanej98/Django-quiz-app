@@ -125,27 +125,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="startModalLabel">Start quiz</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                                <form class="form" action="{% url 'quiz' %}" method="POST">
-                                        {% csrf_token %}
-                                    <div class="modal-body">
-                              <div class="mb-3">
-                        <label class="form-label" for="topic_select_modal">Select Topic</label>
-                        <select id="topic_select_modal" name="topic" class="form-select" aria-label="Default select example">
-                            <option value="Sports" selected>Sports</option>
-                            <option value="Solar System">Solar System</option>
-                            <option value="Geography">Geography</option>
-                        </select>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="form" action="{% url 'quiz' %}" method="POST">
+                        {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="topic_select_modal">Select Topic</label>
+                            <select id="topic_select_modal" name="topic" class="form-select" aria-label="Default select example">
+                                <option value="Sports" selected>Sports</option>
+                                <option value="Solar System">Solar System</option>
+                                <option value="Geography">Geography</option>
+                            </select>
+                        </div>
                     </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <input style="width: 108px;" class="btn btn-primary" type="submit" value="Start Quiz">
-                            </div>
-                                </form>
-                            </div>
-                        </div>
-                        </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input style="width: 108px;" class="btn btn-primary" type="submit" value="Start Quiz">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
